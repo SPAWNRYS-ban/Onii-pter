@@ -9,16 +9,16 @@ clear
 
 installTheme(){
     cd /var/www/
-    tar -cvf MinecraftPurpleThemebackup.tar.gz pterodactyl
+    tar -cvf Onii-pterbackup.tar.gz pterodactyl
     echo "Installing theme..."
     cd /var/www/pterodactyl
-    rm -r MinecraftPurpleTheme
-    git clone https://github.com/Angelillo15/MinecraftPurpleTheme.git
-    cd MinecraftPurpleTheme
-    rm /var/www/pterodactyl/resources/scripts/MinecraftPurpleTheme.css
+    rm -r Onii-pter
+    git clone https://github.com/SPAWNRYS-ban/Onii-pter.git
+    cd Onii-pter
+    rm /var/www/pterodactyl/resources/scripts/oniipter.css
     rm /var/www/pterodactyl/resources/scripts/index.tsx
     mv index.tsx /var/www/pterodactyl/resources/scripts/index.tsx
-    mv MinecraftPurpleTheme.css /var/www/pterodactyl/resources/scripts/MinecraftPurpleTheme.css
+    mv oniipter.css /var/www/pterodactyl/resources/scripts/oniipter.css
     cd /var/www/pterodactyl
 
     curl -sL https://deb.nodesource.com/setup_16.x | sudo -E bash -
@@ -47,29 +47,29 @@ installThemeQuestion(){
 }
 
 repair(){
-    bash <(curl https://raw.githubusercontent.com/Angelillo15/MinecraftPurpleTheme/main/repair.sh)
+    bash <(curl https://raw.githubusercontent.com/SPAWNRYS-ban/Onii-pter/main/repair.sh)
 }
 
 restoreBackUp(){
     echo "Restoring backup..."
     cd /var/www/
-    tar -xvf MinecraftPurpleThemebackup.tar.gz
-    rm MinecraftPurpleThemebackup.tar.gz
+    tar -xvf Onii-pterbackup.tar.gz
+    rm Onii-pterbackup.tar.gz
 
     cd /var/www/pterodactyl
     yarn build:production
     sudo php artisan optimize:clear
 }
-echo "Copyright (c) 2022 Angelillo15 | angelillo15.es"
-echo "This program is free software: you can redistribute it and/or modify"
 echo ""
-echo "Discord: https://discord.angelillo15.es/"
-echo "Website: https://angelillo15.es/"
 echo ""
-echo "[1] Install theme"
-echo "[2] Restore backup"
-echo "[3] Repair panel (use if you have an error in the theme installation)"
-echo "[4] Exit"
+echo " Copyright (c) 2024 SPAWNRYS | onimai.ru"
+echo " This program is free software: you can redistribute it and/or modify"
+echo ""
+echo ""
+echo " [1] Install theme"
+echo " [2] Restore backup"
+echo " [3] Repair panel (use if you have an error in the theme installation)"
+echo " [4] Exit"
 
 read -p "Please enter a number: " choice
 if [ $choice == "1" ]
